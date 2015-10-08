@@ -1,0 +1,32 @@
+{
+  "name": "mooxe-docker-lua",
+  "version": "0.0.0",
+  "description": "docker image for lua application of mooxe",
+  "author": "FooTearth <footearth@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mooxe000/mooxe-docker-lua.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mooxe000/mooxe-docker-lua/issues"
+  },
+  "homepage": "https://github.com/Mooxe000/mooxe-docker-lua",
+  "Keywords": [
+    "docker",
+    "daocloud",
+    "image"
+  ],
+  "bin": {},
+  "scripts": {
+    "build": "docker build -t mooxe/lua .",
+    "rebuild": "docker build --no-cache -t mooxe/lua .",
+    "in": "docker run --name=lua --rm -ti -v `pwd`:/root/lua mooxe/lua /bin/bash",
+    "push": "docker push mooxe/lua",
+    "test": "echo 'hello'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "shelljs": "^0.4.0"
+  }
+}
