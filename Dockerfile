@@ -22,7 +22,8 @@ RUN mkdir -p $DOWNLOAD_PATH
 ##########################################
 # lua
 ##########################################
-ENV LUA_VERSION 5.3.1
+ENV LUA_VERSION 5.2.4
+# ENV LUA_VERSION 5.3.1
 ENV LUA_PATH lua-$LUA_VERSION
 ENV LUA_FILE $LUA_PATH.tar.gz
 RUN \
@@ -86,8 +87,15 @@ RUN \
     -C $DOWNLOAD_PATH
 
 WORKDIR $DOWNLOAD_PATH/$LUAROCKS_PATH
-RUN ./configure && make bootstrap
+# RUN ./configure && make bootstrap
+RUN ./configure && make build && make install
 WORKDIR /root
+RUN \
+  eval `luarocks path` && \
+  echo `luarocks path` >> /root/.bashrc && \
+  echo `luarocks path` >> /root/.zshrc && \
+  echo "set LUA_PATH '`echo $LUA_PATH`'" >> /root/.config/fish/config.fish && \
+  echo "set LUA_CPATH '`echo $LUA_CPATH`'" >> /root/.config/fish/config.fish
 ##########################################
 
 
