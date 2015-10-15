@@ -90,12 +90,17 @@ WORKDIR $DOWNLOAD_PATH/$LUAROCKS_PATH
 # RUN ./configure && make bootstrap
 RUN ./configure && make build && make install
 WORKDIR /root
+ENV BASH_PATH /root/.bashrc
+ENV ZSH_PATH /root/.zshrc
+ENV FISH_PATH /root/.config/fish/config.fish
 RUN \
   eval `luarocks path` && \
-  echo `luarocks path` >> /root/.bashrc && \
-  echo `luarocks path` >> /root/.zshrc && \
-  echo "set LUA_PATH '`echo $LUA_PATH`'" >> /root/.config/fish/config.fish && \
-  echo "set LUA_CPATH '`echo $LUA_CPATH`'" >> /root/.config/fish/config.fish
+  echo "export LUA_PATH='`echo $LUA_PATH`;./?.lua'" >> $BASH_PATH && \
+  echo "export LUA_CPATH='`echo $LUA_PATH`'" >> $BASH_PATH && \
+  echo "export LUA_PATH='`echo $LUA_PATH`;./?.lua'" >> $ZSH_PATH && \
+  echo "export LUA_CPATH='`echo $LUA_PATH`'" >> $ZSH_PATH && \
+  echo "set LUA_PATH '`echo $LUA_PATH`;./?.lua'" >>  $FISH_PATH && \
+  echo "set LUA_CPATH '`echo $LUA_PATH`'" >> $ZSH_PATH
 ##########################################
 
 
