@@ -96,11 +96,11 @@ ENV FISH_PATH /root/.config/fish/config.fish
 RUN \
   eval `luarocks path` && \
   echo "export LUA_PATH='`echo $LUA_PATH`;./?.lua'" >> $BASH_PATH && \
-  echo "export LUA_CPATH='`echo $LUA_PATH`'" >> $BASH_PATH && \
+  echo "export LUA_CPATH='`echo $LUA_CPATH`'" >> $BASH_PATH && \
   echo "export LUA_PATH='`echo $LUA_PATH`;./?.lua'" >> $ZSH_PATH && \
-  echo "export LUA_CPATH='`echo $LUA_PATH`'" >> $ZSH_PATH && \
+  echo "export LUA_CPATH='`echo $LUA_CPATH`'" >> $ZSH_PATH && \
   echo "set LUA_PATH '`echo $LUA_PATH`;./?.lua'" >>  $FISH_PATH && \
-  echo "set LUA_CPATH '`echo $LUA_PATH`'" >> $ZSH_PATH
+  echo "set LUA_CPATH '`echo $LUA_CPATH`'" >> $ZSH_PATH
 ##########################################
 
 
